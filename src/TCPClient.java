@@ -21,18 +21,14 @@ class TCPClient {
         } catch (IOException ex) {
             // Do exception handling
         }
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         if (is != null) {
             FileOutputStream fos = null;
             BufferedOutputStream bos = null;
             try {
-                String fileOutput = "C:\\Users\\Kenya Aliens IT\\Desktop\\javatest\\encryptedfile.des";
+                String fileOutput = "C:\\Users\\Kenya Aliens IT\\Desktop\\client\\encryptedfile.txt";
                 File file = new File(fileOutput);
-
-                // String fileOutput = "C:\\Users\\Kenya Aliens IT\\Desktop\\javatest\\testingout.des";
-                file = new File(fileOutput);
                 fos = new FileOutputStream(fileOutput);
                 bos = new BufferedOutputStream(fos);
                 bytesRead = is.read(aByte, 0, aByte.length);
@@ -44,13 +40,14 @@ class TCPClient {
                 bos.write(baos.toByteArray());
                 bos.flush();
                 bos.close();
-
-
+                System.out.println("*********The File Has Been Successfully Received***********");
+                DESDecryption.fnDESDecryption(file);
                 clientSocket.close();
             } catch (IOException ex) {
                 // Do exception handling
             }
         }
+
     }
 }
 
